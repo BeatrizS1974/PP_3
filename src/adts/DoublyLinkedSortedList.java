@@ -53,8 +53,8 @@ public class DoublyLinkedSortedList<E> implements ListInterface<E>, Iterable<E>{
      @Override
     // Retrieve an item by value
     public E get(E item) {
-        int index = Collections.binarySearch(list, item);
-        return (index >= 0) ? list.get(index) : null;
+        Node<E> foundNode= find(item);
+        return (foundNode != null) ? foundNode.data : null;
     }
 
     @Override
@@ -62,7 +62,8 @@ public class DoublyLinkedSortedList<E> implements ListInterface<E>, Iterable<E>{
         if (index < 0 || index >= list.size()) {
             throw new IndexOutOfBoundsException("Index out of bounds: " + index);
         }
-        return list.get(index);
+       Node<E> nodeIndex = getNode(index);
+    	return nodeIndex.data;
     }
         Public string toString(){
         StringBuilder listStr = new StringBuilder();
